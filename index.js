@@ -4,6 +4,7 @@ import axios from 'axios'
 import schedule from 'node-schedule'
 
 import { booksHandler } from './handlers/books.js'
+import { newsHandler } from './handlers/news.js'
 
 // 讀取 .env 設定檔
 dotenv.config()
@@ -16,6 +17,7 @@ const bot = linebot({
 })
 
 let booksReply = {}
+let newsReply = {}
 
 // 處理外匯投資相關書籍
 booksHandler().then(result => {
@@ -28,13 +30,26 @@ schedule.scheduleJob('* * 8 * * *', () => {
   })
 })
 
+// 處理外匯相關新聞
+newsHandler().then(result => {
+  newsReply = result
+})
+
+schedule.scheduleJob('* */1 * * *', () => {
+  newsHandler().then(result => {
+    newsReply = result
+  })
+})
+
 // Linebot 事件
 bot.on('message', async (event) => {
   const userMsg = event.message.text.trim()
   try {
     if (userMsg === '外匯相關書籍') return event.reply(booksReply)
+    if (userMsg === '外匯相關新聞') return event.reply(newsReply)
   } catch (error) {
-    console.log('發生錯誤')
+    console.log('index.js Error', error)
+    event.reply('發生錯誤')
   }
 })
 
