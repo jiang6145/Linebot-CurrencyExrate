@@ -1,0 +1,37 @@
+{
+  "type": "module",
+  "name": "Linebot-CurrencyExrate",
+  "version": "1.0.0",
+  "description": "linebot for check exchange rate",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "14.14.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiang6145/Linebot-CurrencyExrate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jiang6145/Linebot-CurrencyExrate/issues"
+  },
+  "homepage": "https://github.com/jiang6145/Linebot-CurrencyExrate#readme",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "dotenv": "^8.2.0",
+    "linebot": "^1.6.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.14.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1"
+  }
+}
