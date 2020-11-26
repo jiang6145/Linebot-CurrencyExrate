@@ -1,5 +1,6 @@
 import axios from 'axios'
 import cheerio from 'cheerio'
+import numeral from 'numeral'
 
 export const bankExrateHandler = async (currencyData) => {
   try {
@@ -37,5 +38,25 @@ export const bankExrateHandler = async (currencyData) => {
 }
 
 export const bestBankExrate = (bankExrateData) => {
-  console.log(bankExrateData)
+  const { currency, banks } = bankExrateData
+
+  let bestCashBuy = banks[0]
+  let bestCashSell = banks[0]
+  let bestSpotBuy = banks[0]
+  let bestSpotSell = banks[0]
+
+  banks.forEach((bank, index) => {
+    if (bank.cashBuy !== '--' && bank.cashSell !== '--') {
+      bestCashBuy = numeral(bank.cashBuy).value() > numeral(bestCashBuy.cashBuy).value() ? bank : bestCashBuy
+      bestCashSell = numeral(bank.cashSell).value() < numeral(bestCashSell.cashSell).value() ? bank : bestCashSell
+    }
+    if (bank.spotBuy !== '--' && bank.spotSell !== '--') {
+      bestSpotBuy = numeral(bank.spotBuy).value() > numeral(bestSpotBuy.spotBuy).value() ? bank : bestSpotBuy
+      bestSpotSell = numeral(bank.spotSell).value() < numeral(bestSpotSell.spotSell).value() ? bank : bestSpotSell
+    }
+  })
+  console.log(bestCashBuy)
+  console.log(bestCashSell)
+  console.log(bestSpotBuy)
+  console.log(bestSpotSell)
 }

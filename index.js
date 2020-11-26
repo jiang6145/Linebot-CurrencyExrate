@@ -1,10 +1,12 @@
 import linebot from 'linebot'
 import dotenv from 'dotenv'
-import axios from 'axios'
 import schedule from 'node-schedule'
 
 import { booksHandler } from './handlers/books.js'
 import { newsHandler } from './handlers/news.js'
+import { userMsgHandler } from './handlers/userMsgHandler.js'
+import { exrateHandler } from './handlers/exrate.js'
+import { bankExrateHandler, bestBankExrate } from './handlers/bankExrate.js'
 
 // 讀取 .env 設定檔
 dotenv.config()
@@ -45,8 +47,16 @@ schedule.scheduleJob('* */1 * * *', () => {
 bot.on('message', async (event) => {
   const userMsg = event.message.text.trim()
   try {
-    if (userMsg === '外匯相關書籍') return event.reply(booksReply)
-    if (userMsg === '外匯相關新聞') return event.reply(newsReply)
+    if (userMsg.startsWith('/')) {
+      const currencyData = userMsgHandler(userMsg)
+      const exrateData = await exrateHandler(currencyData)
+      const bankExrateData = await bankExrateHandler(currencyData)
+      const bestBankExrateData = bestBankExrate(bankExrateData)
+    }
+
+    if (userMsg === '外匯書') return event.reply(booksReply)
+
+    if (userMsg === '外匯新聞') return event.reply(newsReply)
   } catch (error) {
     console.log('index.js Error', error)
     event.reply('發生錯誤')
