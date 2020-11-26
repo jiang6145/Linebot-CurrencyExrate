@@ -1,4 +1,5 @@
 import axios from 'axios'
+import numeral from 'numeral'
 
 export const exrateHandler = async (currencyData) => {
   try {
@@ -11,9 +12,9 @@ export const exrateHandler = async (currencyData) => {
     for (const key in exrateDatas) {
       if (currencyKey === key) {
         // 因匯率 API 均以美金報價, 如果要以台幣兌換日幣的匯率, 需要以台幣兌美金匯率 / 日幣兌美金匯率 = 臺幣兌日幣匯率
-        const basicCurrency = exrateDatas.USDTWD.Exrate
+        const basicCurrency = numeral(exrateDatas.USDTWD.Exrate)
         const exchangeCurrency = (currencyKey === 'USDTWD') ? 1 : exrateDatas[key].Exrate
-        const exrate = (basicCurrency / exchangeCurrency).toFixed(2)
+        const exrate = basicCurrency.divide(exchangeCurrency).format('0.00')
         const updateTime = exrateDatas[key].UTC
 
         return {
