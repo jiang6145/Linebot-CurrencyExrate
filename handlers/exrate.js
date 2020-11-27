@@ -18,6 +18,7 @@ export const exrateHandler = async (currencyData) => {
         const updateTime = exrateDatas[key].UTC
 
         return {
+          currency,
           exrate,
           updateTime
         }
