@@ -22,23 +22,23 @@ let booksReply = {}
 let newsReply = {}
 
 // 處理外匯投資相關書籍
-booksHandler().then(result => {
+booksHandler().then((result) => {
   booksReply = result
 })
 
 schedule.scheduleJob('* * 8 * * *', () => {
-  booksHandler().then(result => {
+  booksHandler().then((result) => {
     booksReply = result
   })
 })
 
 // 處理外匯相關新聞
-newsHandler().then(result => {
+newsHandler().then((result) => {
   newsReply = result
 })
 
 schedule.scheduleJob('* */1 * * *', () => {
-  newsHandler().then(result => {
+  newsHandler().then((result) => {
     newsReply = result
   })
 })
@@ -52,6 +52,8 @@ bot.on('message', async (event) => {
       const exrateData = await exrateHandler(currencyData)
       const bankExrateData = await bankExrateHandler(currencyData)
       const bestBankExrateData = bestBankExrate(bankExrateData)
+      console.log(exrateData)
+      console.log(bestBankExrateData)
     }
 
     if (userMsg === '外匯書') return event.reply(booksReply)
