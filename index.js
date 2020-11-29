@@ -85,11 +85,22 @@ bot.on('message', async (event) => {
       return event.reply(exchangeReply)
     }
 
-    return event.reply('有任何問題可以到 https://github.com/jiang6145/Linebot-CurrencyExrate 或輸入 -h 查看說明')
+    if (userMsg === '-h') {
+      const reply =
+      '查詢國際匯率 => /幣別\n' +
+      '查詢各銀行匯率 => @幣別\n' +
+      '換匯金額試算 => $幣別金額，ex:$美金1000\n' +
+      '外匯相關新聞 => /外匯新聞\n' +
+      '外匯理財暢銷榜 => /外匯書籍'
+
+      return event.reply(reply)
+    }
+
+    return event.reply('哈囉，有什麼問題嗎?\n可以輸入 -h \n或到 https://github.com/jiang6145/Linebot-CurrencyExrate 查看說明')
   } catch (error) {
     console.log('index.js Error', error)
 
-    return event.reply('找不到資料，請輸入正確的幣別或輸入 -h 查看指令說明')
+    return event.reply('找不到資料!\n請輸入正確的幣別或輸入 -h 查看指令說明')
   }
 })
 
