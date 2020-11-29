@@ -71,9 +71,9 @@ bot.on('message', async (event) => {
       const bankExrate = await getBankExrateData(currencyData)
 
       if (bankExrate.banks.length < 20) {
-        event.reply(banksExrateListReply(bankExrate, 1))
+        return event.reply(banksExrateListReply(bankExrate, 1))
       } else {
-        event.reply([banksExrateListReply(bankExrate, 1), banksExrateListReply(bankExrate, 2)])
+        return event.reply([banksExrateListReply(bankExrate, 1), banksExrateListReply(bankExrate, 2)])
       }
     }
 
