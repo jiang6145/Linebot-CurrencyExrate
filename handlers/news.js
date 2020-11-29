@@ -17,7 +17,7 @@ export const getNewsReply = async () => {
       newsDatas.push({
         title,
         link: 'https://news.cnyes.com' + link,
-        time: new Date(time).toLocaleString(),
+        time: new Date(time).toLocaleString('zh-TW'),
         imgSrc: imgSrc.replace('/s/', '/l/')
       })
     }
