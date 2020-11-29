@@ -1,4 +1,6 @@
-// 利用正則表達式將使用者輸入的貨幣訊息轉為所需字串
+import numeral from 'numeral'
+
+// 利用正則表達式將使用者輸入的貨幣訊息轉為所需物件
 const controlDatas = [
   {
     regExp: /^美[金元]$|^USD$/i,
@@ -77,7 +79,7 @@ const controlDatas = [
   },
   {
     regExp: /^越南[幣盾]$|^VND$/i,
-    currency: '越盾',
+    currency: '越南盾',
     currencyKey: 'VND'
   },
   {
@@ -86,7 +88,7 @@ const controlDatas = [
     currencyKey: 'MOP'
   },
   {
-    regExp: /^菲律賓(披|比)索$|^PHP$/i,
+    regExp: /^菲律賓(比索|披索|幣)$|^PHP$/i,
     currency: '菲律賓披索',
     currencyKey: 'PHP'
   },
@@ -99,6 +101,26 @@ const controlDatas = [
     regExp: /^南非幣$|^蘭特$|^ZAR$/i,
     currency: '南非幣',
     currencyKey: 'ZAR'
+  },
+  {
+    regExp: /^印度(比索|披索|盧比|幣)$|^INR$/i,
+    currency: '印度披索',
+    currencyKey: 'INR'
+  },
+  {
+    regExp: /^丹麥(克朗|幣)$|^DKK$/i,
+    currency: '丹麥幣',
+    currencyKey: 'DKK'
+  },
+  {
+    regExp: /^墨西哥(披索|幣)$|^MXN$/i,
+    currency: '墨西哥披索',
+    currencyKey: 'MXN'
+  },
+  {
+    regExp: /^土耳其里拉$|^TRY$/i,
+    currency: '土耳其里拉',
+    currencyKey: 'TRY'
   }
 ]
 
@@ -111,6 +133,137 @@ export const userMsgHandler = (userMsg) => {
         currency: data.currency,
         currencyKey: data.currencyKey
       }
+    }
+  }
+}
+
+export const exchangeMsgHandler = (userMsg) => {
+  const numIndex = userMsg.search(/[0-9]/) // 尋找第一個數字的 index 以此位置分割字串
+  const currencyMsg = userMsg.slice(0, numIndex).trim()
+  const moneyMsg = numeral(userMsg.slice(numIndex).trim()).value()
+
+  const currencyData = userMsgHandler(currencyMsg)
+
+  if (moneyMsg !== null && currencyData) {
+    return {
+      currency: currencyData.currency,
+      currencyKey: currencyData.currencyKey,
+      moneyMsg: numeral(moneyMsg).format('0.00')
+    }
+  }
+}
+
+export const currencyQuickReply = (prefix) => {
+  return {
+    type: 'text',
+    text: `請選擇幣別或輸入 ${prefix}幣別`,
+    quickReply: {
+      items: [
+        {
+          type: 'action',
+          action: {
+            type: 'message',
+            label: '美金',
+            text: prefix + '美金'
+          }
+        },
+        {
+          type: 'action',
+          action: {
+            type: 'message',
+            label: '日幣',
+            text: prefix + '日幣'
+          }
+        },
+        {
+          type: 'action',
+          action: {
+            type: 'message',
+            label: '英鎊',
+            text: prefix + '英鎊'
+          }
+        },
+        {
+          type: 'action',
+          action: {
+            type: 'message',
+            label: '歐元',
+            text: prefix + '歐元'
+          }
+        },
+        {
+          type: 'action',
+          action: {
+            type: 'message',
+            label: '人民幣',
+            text: prefix + '人民幣'
+          }
+        },
+        {
+          type: 'action',
+          action: {
+            type: 'message',
+            label: '港幣',
+            text: prefix + '港幣'
+          }
+        },
+        {
+          type: 'action',
+          action: {
+            type: 'message',
+            label: '韓元',
+            text: prefix + '韓元'
+          }
+        },
+        {
+          type: 'action',
+          action: {
+            type: 'message',
+            label: '泰銖',
+            text: prefix + '泰銖'
+          }
+        },
+        {
+          type: 'action',
+          action: {
+            type: 'message',
+            label: '新加坡幣',
+            text: prefix + '新加坡幣'
+          }
+        },
+        {
+          type: 'action',
+          action: {
+            type: 'message',
+            label: '加拿大幣',
+            text: prefix + '加拿大幣'
+          }
+        },
+        {
+          type: 'action',
+          action: {
+            type: 'message',
+            label: '澳幣',
+            text: prefix + '澳幣'
+          }
+        },
+        {
+          type: 'action',
+          action: {
+            type: 'message',
+            label: '瑞典幣',
+            text: prefix + '瑞典幣'
+          }
+        },
+        {
+          type: 'action',
+          action: {
+            type: 'message',
+            label: '南非幣',
+            text: prefix + '南非幣'
+          }
+        }
+      ]
     }
   }
 }
