@@ -1,7 +1,7 @@
 import axios from 'axios'
 import cheerio from 'cheerio'
 
-export const booksHandler = async () => {
+export const getBooksReply = async () => {
   try {
     const bookDatas = []
 

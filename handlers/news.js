@@ -1,7 +1,7 @@
 import axios from 'axios'
 import cheerio from 'cheerio'
 
-export const newsHandler = async () => {
+export const getNewsReply = async () => {
   try {
     const newsDatas = []
 
