@@ -48,6 +48,14 @@ bot.on('message', async (event) => {
   const userMsg = event.message.text.trim()
 
   try {
+    if (userMsg === '/查詢匯率') return event.reply(currencyQuickReply('/'))
+
+    if (userMsg === '@銀行牌告匯率') return event.reply(currencyQuickReply('@'))
+
+    if (userMsg === '/外匯書籍') return event.reply(booksReply)
+
+    if (userMsg === '/外匯新聞') return event.reply(newsReply)
+
     if (userMsg.startsWith('/')) {
       const currencyData = userMsgHandler(userMsg)
       const exrate = await getExrateData(currencyData)
@@ -77,16 +85,11 @@ bot.on('message', async (event) => {
       return event.reply(exchangeReply)
     }
 
-    if (userMsg === '查詢匯率') return event.reply(currencyQuickReply('/'))
-
-    if (userMsg === '各銀行牌告匯率') return event.reply(currencyQuickReply('@'))
-
-    if (userMsg === '外匯書籍') return event.reply(booksReply)
-
-    if (userMsg === '外匯新聞') return event.reply(newsReply)
+    return event.reply('有任何問題可以到 https://github.com/jiang6145/Linebot-CurrencyExrate 或輸入 -h 查看說明')
   } catch (error) {
     console.log('index.js Error', error)
-    event.reply('發生錯誤')
+
+    return event.reply('找不到資料，請輸入正確的幣別或輸入 -h 查看指令說明')
   }
 })
 

@@ -26,7 +26,6 @@ export const getExrateData = async (currencyData) => {
     }
   } catch (error) {
     console.log('exrate.js Error', error)
-    return '找不到此貨幣匯率'
   }
 }
 
@@ -233,7 +232,6 @@ export const getExrateReply = (exrate, bestBankExrate) => {
   }
 
   if (bestCashBuy && bestCashSell) {
-    console.log('添加現鈔')
     reply.contents.contents.push({
       type: 'bubble',
       size: 'kilo',

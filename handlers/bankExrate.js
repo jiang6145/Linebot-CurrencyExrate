@@ -33,7 +33,6 @@ export const getBankExrateData = async (currencyData) => {
     return bankDatas
   } catch (error) {
     console.log('exchangeBank.js Error', error)
-    return '找不到此貨幣匯率'
   }
 }
 
