@@ -5,7 +5,7 @@
 目前匯率包含 : 美金、歐元、日幣、港幣、英鎊、瑞士法郎、人民幣、韓幣、澳幣、紐西蘭幣、新加坡幣、泰銖、瑞典幣、馬來西亞幣、加拿大幣、越南盾、澳門幣、菲律賓披索、印尼盾、南非幣、印度披索、丹麥幣、墨西哥披索、土耳其里拉。
 
 ## 加入好友
-![image](https://qr-official.line.me/sid/M/924murho.png)  
+![image](https://raw.githubusercontent.com/jiang6145/Linebot-CurrencyExrate/master/images/QRcode.png)  
 **好友 ID : @924murho**
 
 ## 功能
