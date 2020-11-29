@@ -76,6 +76,11 @@ bot.on('message', async (event) => {
 
       return event.reply(exchangeReply)
     }
+
+    if (userMsg === '查詢匯率') return event.reply(currencyQuickReply('/'))
+
+    if (userMsg === '各銀行牌告匯率') return event.reply(currencyQuickReply('@'))
+
     if (userMsg === '外匯書籍') return event.reply(booksReply)
 
     if (userMsg === '外匯新聞') return event.reply(newsReply)
@@ -90,7 +95,6 @@ bot.on('postback', (event) => {
 
   try {
     if (userPostback === '查詢其它幣別') return event.reply(currencyQuickReply('/'))
-    if (userPostback === '金額試算') return event.reply('請輸入 $幣別金額，ex: 試算兌換1000美金，$美金1000，以國際匯率計算。')
   } catch (error) {
     console.log('index.js Error', error)
   }
