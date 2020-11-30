@@ -32,10 +32,12 @@
 - [銀行牌告匯率](https://www.findrate.tw/USD/)
 - [外匯相關新聞](https://news.cnyes.com/news/cat/forex?exp=a)
 - [外匯相關書籍](https://www.books.com.tw/web/sys_bbotm/books/020907/?v=1&o=5)
-### 圖文選單
+### 圖片資源
 - Icons made by [Smashicons](https://smashicons.com/) from [www.flaticon.com](https://www.flaticon.com/)
 - Icons made by [Freepik](http://www.freepik.com/) from [www.flaticon.com](https://www.flaticon.com/)
 - Icons made by [monkik](https://smashicons.com/) from [www.flaticon.com](https://www.flaticon.com/)
+- Icons made by [Darius Dan](http://www.dariusdan.com/) from [www.flaticon.com](https://www.flaticon.com/)
+
 
 ## 免責聲明
 - **本機器人僅供參考，使用者依本資料交易發生交易損失需自行負責。**
