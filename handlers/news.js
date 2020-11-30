@@ -11,13 +11,11 @@ export const getNewsReply = async () => {
     for (let i = 0; i < 10; i++) {
       const title = $('._2bFl.theme-list ._1Zdp').eq(i).attr('title')
       const link = $('._2bFl.theme-list ._1Zdp').eq(i).attr('href')
-      const time = $('._2bFl.theme-list ._1Zdp').eq(i).find('time[datetime]').attr('datetime')
       const imgSrc = $('._2bFl.theme-list ._1Zdp').eq(i).find('img').attr('src')
 
       newsDatas.push({
         title,
         link: 'https://news.cnyes.com' + link,
-        time: new Date(time).toLocaleString('zh-TW'),
         imgSrc: imgSrc.replace('/s/', '/l/')
       })
     }
@@ -66,27 +64,6 @@ export const getNewsReply = async () => {
               position: 'absolute',
               offsetTop: '15px',
               offsetStart: '15px'
-            },
-            {
-              type: 'box',
-              layout: 'vertical',
-              contents: [
-                {
-                  type: 'text',
-                  text: news.time,
-                  color: '#ffffff',
-                  size: 'xxs',
-                  align: 'end'
-                }
-              ],
-              position: 'absolute',
-              width: '100%',
-              offsetBottom: '0px',
-              backgroundColor: '#00000055',
-              paddingStart: '10px',
-              paddingEnd: '10px',
-              paddingTop: '3px',
-              paddingBottom: '3px'
             }
           ],
           paddingAll: 'none'
