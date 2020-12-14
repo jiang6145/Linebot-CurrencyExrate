@@ -22,7 +22,7 @@ export const getNewsReply = async () => {
 
     const reply = {
       type: 'flex',
-      altText: 'this is a flex message',
+      altText: '傳送了外匯相關新聞的資訊',
       contents: {
         type: 'carousel',
         contents: []

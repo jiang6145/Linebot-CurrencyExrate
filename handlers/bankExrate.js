@@ -90,7 +90,7 @@ export const banksExrateListReply = (bankExrate, page) => {
   const { currency, banks } = bankExrate
   const reply = {
     type: 'flex',
-    altText: 'this is a flex message',
+    altText: `傳送了${currency}的銀行牌告匯率資訊`,
     contents: {
       type: 'bubble',
       body: {

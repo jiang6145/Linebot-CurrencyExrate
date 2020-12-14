@@ -55,7 +55,7 @@ export const getExrateReply = (exrate, bestBankExrate) => {
 
   const reply = {
     type: 'flex',
-    altText: 'this is a flex message',
+    altText: `傳送了${exrate.currency}的國際匯率資訊`,
     contents: {
       type: 'carousel',
       contents: [
@@ -361,7 +361,7 @@ export const getExchangeReply = (exchangeResult) => {
   const { currency, exrate, updateTime, money, exchange } = exchangeResult
   return {
     type: 'flex',
-    altText: 'this is a flex message',
+    altText: `傳送了兌換${money}${currency}試算的資訊`,
     contents: {
       type: 'bubble',
       body: {

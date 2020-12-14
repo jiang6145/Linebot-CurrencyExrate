@@ -25,7 +25,7 @@ export const getBooksReply = async () => {
 
     const reply = {
       type: 'flex',
-      altText: 'this is a flex message',
+      altText: '傳送了外匯投資相關書籍的資訊',
       contents: {
         type: 'carousel',
         contents: []
